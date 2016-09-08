@@ -1,10 +1,9 @@
 ---
 layout: post
-title:  "Dummy Post 4"
-date:   2015-04-18 08:43:59
-author: Ben Centra
+title:  "Dummy Post"
+date:   2016-09-08 08:43:59
+author: Unskilled Coder
 categories: Dummy
-tags: ipsum
 ---
 
 This is just a dummy post. Lorem ipsum and all the rest.

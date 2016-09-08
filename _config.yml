@@ -86,7 +86,7 @@ social:
 
   - name: GitHub
     icon: github
-    username: Hao WU
+    username: Unskilled Coder
     url: https://github.com/unskilledcoder
     desc: Fork me on GitHub
     share: false
@@ -94,7 +94,7 @@ social:
   - name: LinkedIn
     icon: linkedin
     username: Hao WU
-    url: www.linkedin.com/in/wuhao1542
+    url: http://www.linkedin.com/in/wuhao1542
     desc: Connect with me on LinkedIn
     share: true
 
