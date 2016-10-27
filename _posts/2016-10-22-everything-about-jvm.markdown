@@ -16,7 +16,9 @@ As we all know JVM is the abbreviation of Java Virtual Machine, which is the cor
 * Manage code loading & initialization. 
 
 ### 2. Focused points
+
 #### 2.1. JVM memory model & garbage collection
+
 #### 2.1.1. JVM memory model
 
 Let's directly get into our topic, the JVM memory model.
