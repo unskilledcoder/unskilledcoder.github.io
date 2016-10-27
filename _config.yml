@@ -10,11 +10,11 @@ exclude:
 
 # Site settings
 title: Unskilled Coder
-subtitle: "To make complex world pure"
+subtitle: "Pure the complex world"
 email: unskilledcoder@gmail.com
 name: Hao WU
 description: >
-  Life is short and complex enough, let's try to get it purer.
+  Less is more.
 # Base URL of site (i.e. /blog). It should always start with a slash,
 # and never end with a slash. Set it to a blank value if hosting at the
 # root of your server.
@@ -51,7 +51,7 @@ descriptions:
   - cat: jekyll
     desc: "Posts describing Jekyll setup techniques."
 
-  - cat: dummy
+  - cat: hello
     desc: "Just some placeholder posts, lorem ipsum and the rest."
 
 # Social icons and sharing options
@@ -73,7 +73,7 @@ social:
   - name: Twitter
     icon: twitter
     username: Hao WU
-    url: https://twitter.com/wuhao1542
+    --url: https://twitter.com/wuhao1542
     desc: Follow me on Twitter
     share: true
 
