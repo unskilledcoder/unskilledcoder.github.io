@@ -10,6 +10,7 @@ This post generally is to explain what JVM is & how it works. I'm here to record
 
 ### 1. Introduction
 As we all know JVM is the abbreviation of Java Virtual Machine, which is the cornerstone of the Java Platform. It mainly owns the following responsibility:
+
 * Manage resources between living OS and its inside running code, like all virtual machine do.
 * Optimize the space & time efficiency of the running code.
 * Manage and automate garbage collection of the objects in memory.
@@ -23,6 +24,7 @@ As we all know JVM is the abbreviation of Java Virtual Machine, which is the cor
 
 Let's directly get into our topic, the JVM memory model.
 The JVM memory can be simply splitted into 3 parts
+
 1. Heap Memory
 2. Non-heap Memory
 3. Other
@@ -46,7 +48,7 @@ So based on the above description, we should not create and release big objects 
 **Permanent Generation** is used for store class related meta-data, which will not participate in gc events.
 
 In addition, the **Permanent Generation** is replaced by **Meta-data space** after Java 8, however they are very similar, except **Meta-data space** can be dynamically re-size in runtime.
-
 <br/>
+
 #### More points to add...
 Recommended book for JVM : Java Performance (2012) - Charlie Hunt
