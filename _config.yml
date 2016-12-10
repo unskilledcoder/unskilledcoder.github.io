@@ -48,11 +48,17 @@ jekyll-archives:
 
 # Category descriptions (for archive pages)
 descriptions:
-  - cat: jekyll
-    desc: "Posts describing Jekyll setup techniques."
+  - cat: java
+    desc: "All Java releated posts."
 
-  - cat: hello
-    desc: "Just some placeholder posts, lorem ipsum and the rest."
+  - cat: jvm
+    desc: "Posts try to explain the detail mechanism of java virtual machine."
+  
+  - cat: core-java
+    desc: "Posts that is relavant to core java."
+
+  - cat: hadoop
+    desc: "hadoop related posts."
 
 # Social icons and sharing options
 #

@@ -3,7 +3,7 @@ layout: post
 title:  "Everything about JVM"
 date:   2016-10-22 08:43:59
 author: Unskilled Coder
-categories: jvm
+categories: java jvm
 ---
 
 This post generally is to explain what JVM is & how it works. I'm here to record my understandings of this mistery black box and share them with you.
