@@ -26,7 +26,7 @@ categories: hadoop
 
 ## <a name="1">1. Introduction</a>
 
-This posts will give all related detail in how to setup a Hadoop cluster on CentOS linux system. Before you read this article, I will assume that you already have all basic conceptions about Hadoop and Linux operating system.
+This posts will give all related detail in how to setup a Hadoop cluster on CentOS linux system. Before you read this article, I assume you already have all basic conceptions about Hadoop and Linux operating system.
 <br /><br />
 
 ## <a name="2">2. Architecture</a>
