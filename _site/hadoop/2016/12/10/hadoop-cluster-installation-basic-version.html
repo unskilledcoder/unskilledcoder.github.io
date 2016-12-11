@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Hadoop Cluster 2.7.3 Installation on CentOS 7 in basic version</title>
+  <meta name="description" content="Summary">
+  
+  <meta name="author" content="Hao WU">
+  <meta name="copyright" content="&copy; Hao WU 2016">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/monokai_sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <!-- Facebook OGP cards -->
+  <meta property="og:description" content="Summary" />
+  <meta property="og:url" content="http://unskilledcoder.github.io" />
+  <meta property="og:site_name" content="Unskilled Coder" />
+  <meta property="og:title" content="Hadoop Cluster 2.7.3 Installation on CentOS 7 in basic version" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://unskilledcoder.github.io/assets/logo.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="612" />
+  <meta property="og:image:height" content="605" />
+  
+
+  
+  <!-- Twitter: card tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Hadoop Cluster 2.7.3 Installation on CentOS 7 in basic version">
+  <meta name="twitter:description" content="Summary">
+  <meta name="twitter:image" content="http://unskilledcoder.github.io/assets/logo.png">
+  <meta name="twitter:url" content="http://unskilledcoder.github.io">
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://unskilledcoder.github.io/hadoop/2016/12/10/hadoop-cluster-installation-basic-version.html">
+  <link rel="alternate" type="application/rss+xml" title="Unskilled Coder" href="http://unskilledcoder.github.io/feed.xml" />
+
+  <!-- Begin Jekyll SEO tag v2.0.0 -->
+<title>Hadoop Cluster 2.7.3 Installation on CentOS 7 in basic version - Unskilled Coder</title>
+<meta property="og:title" content="Hadoop Cluster 2.7.3 Installation on CentOS 7 in basic version" />
+<meta name="description" content="Summary" />
+<meta property="og:description" content="Summary" />
+<link rel="canonical" href="http://unskilledcoder.github.io/hadoop/2016/12/10/hadoop-cluster-installation-basic-version.html" />
+<meta property="og:url" content="http://unskilledcoder.github.io/hadoop/2016/12/10/hadoop-cluster-installation-basic-version.html" />
+<meta property="og:site_name" content="Unskilled Coder" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-12-10T17:00:00+08:00" />
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Hadoop Cluster 2.7.3 Installation on CentOS 7 in basic version",
+    "datePublished": "2016-12-10T17:00:00+08:00",
+    "description": "Summary",
+    "logo": "http://unskilledcoder.github.io/assets/logo.png",
+    "url": "http://unskilledcoder.github.io/hadoop/2016/12/10/hadoop-cluster-installation-basic-version.html"
+  }
+</script>
+<!-- End Jekyll SEO tag -->
+
+  <meta name="google-site-verification" content="jYuPMeBs4raAulb1NWzxmyNoSvei1b5nhDig8lIMMYo" />
+</head>
+
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <a href="/" class="logo">
+      
+      <img src="/assets/logo.png" alt="Unskilled Coder">
+      
+    </a>
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <ul id="js-navigation-menu" class="navigation-menu show">
+        
+          
+          <li class="nav-link"><a href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+          <li class="nav-link"><a href="/posts/">Posts</a>
+          
+        
+          
+          <li class="nav-link"><a href="/typography/">Typography</a>
+          
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container " >
+  <div class="scrim ">
+    <header class="post-header">
+      <h1 class="title">Hadoop Cluster 2.7.3 Installation on CentOS 7 in basic version</h1>
+      <p class="info">by <strong>Hao WU</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+ <span class="page-divider">
+  <span class="one"></span>
+  <span class="two"></span>
+</span>
+ 
+
+<section class="post-meta">
+  <div class="post-date">December 10, 2016</div>
+  <div class="post-categories">
+  in 
+    
+    <a href="/category/Hadoop">Hadoop</a>
+    
+  
+  </div>
+</section>  
+
+<article class="post-content">
+  <h2 id="summary">Summary</h2>
+
+<h3 id="introduction1"><a href="#1">1. Introduction</a></h3>
+
+<h3 id="architecture2"><a href="#2">2. Architecture</a></h3>
+
+<h3 id="centos-setup3"><a href="#3">3. CentOS setup</a></h3>
+
+<h3 id="hadoop-setup4"><a href="#4">4. Hadoop Setup</a></h3>
+
+<h3 id="launch-and-shutdown-hadoop-cluster-service5"><a href="#5">5. Launch and Shutdown Hadoop Cluster Service</a></h3>
+
+<h3 id="verify-the-hadoop-cluster-is-up-and-healthy6"><a href="#6">6. Verify the hadoop cluster is up and healthy</a></h3>
+
+<h3 id="end7"><a href="#7">7. End</a></h3>
+
+<p><br /></p>
+
+<h2 id="a-name11-introductiona"><a name="1">1. Introduction</a></h2>
+
+<p>This posts will give all related detail in how to setup a Hadoop cluster on CentOS linux system. Before you read this article, I will assume that you already have all basic conceptions about Hadoop and Linux operating system.
+<br /><br /></p>
+
+<h2 id="a-name22-architecturea"><a name="2">2. Architecture</a></h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">IP Address</th>
+      <th style="text-align: left">Hostname</th>
+      <th style="text-align: left">Role</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">192.168.171.132</td>
+      <td style="text-align: left">master</td>
+      <td style="text-align: left">NameNode, ResourceManager</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">192.168.171.133</td>
+      <td style="text-align: left">slave1</td>
+      <td style="text-align: left">SecondaryNameNode, DataNode, NodeManager</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">192.168.171.134</td>
+      <td style="text-align: left">slave2</td>
+      <td style="text-align: left">DataNode, NodeManager</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<h2 id="a-name33-centos-setupa"><a name="3">3. CentOS setup</a></h2>
+
+<h3 id="install-necessary-packages-for-os">3.1. install necessary packages for OS</h3>
+
+<p>We pick up CentOS minimal ISO as our installation prototype, once the system installed, we need 2 more basic packages: <br /></p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo yum install -y net-tools
+sudo yum install -y openssh-server
+</code></pre>
+</div>
+
+<p><em>The first line is to install ifconfig, while the second one is to be able to be ssh login by remote peer.</em><br /></p>
+
+<h3 id="setup-hostname-for-all-nodes">3.2. setup hostname for all nodes</h3>
+
+<p>This step is optional, but important for better self-identify while you use same username to walk through different nodes.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo hostnamectl <span class="nb">set</span>-hostname master
+</code></pre>
+</div>
+
+<p><em>ex: at <b>master</b> node</em></p>
+
+<p>re-login to check the effect</p>
+
+<h3 id="setup-jdk-for-all-nodes">3.3. setup jdk for all nodes</h3>
+
+<p><em>install jdk from oracle official website</em></p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo wget --header <span class="s2">"Cookie: oraclelicense=accept-securebackup-cookie"</span> http://download.oracle.com/otn-pub/java/jdk/8u112-b14/jdk-8u112-linux-x64.rpm
+sudo yum localinstall -y jdk-8u112-linux-x64.rpm
+sudo rm jdk-8u112-linux-x64.rpm
+</code></pre>
+</div>
+
+<p><em>add java.sh under /etc/profile.d/</em></p>
+
+<p>java.sh content:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">export </span><span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/java/jdk1.8.0_112
+<span class="nb">export </span><span class="nv">JRE_HOME</span><span class="o">=</span>/usr/java/jdk1.8.0_112/jre
+<span class="nb">export </span><span class="nv">CLASSPATH</span><span class="o">=</span><span class="nv">$JAVA_HOME</span>/lib:.
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$JAVA_HOME</span>/bin
+</code></pre>
+</div>
+
+<p>re-login, and you’ll find all environment variables, and java is well installed.</p>
+
+<p><em>Approach to verification:</em></p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>java -version
+ls <span class="nv">$JAVA_HOME</span>
+ls <span class="nv">$PATH</span>
+</code></pre>
+</div>
+
+<p>if the java version goes wrong, you can</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo alternatives --config java
+</code></pre>
+</div>
+
+<p>then choose a correct version.</p>
+
+<h3 id="setup-user-and-user-group-on-all-nodes">3.4. setup user and user group on all nodes</h3>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo groupadd hadoop
+sudo useradd -d /home/hadoop -g hadoop hadoop
+passwd hadoop
+</code></pre>
+</div>
+
+<h3 id="modify-hosts-file-for-network-inter-recognition-on-all-nodes">3.5. modify hosts file for network inter-recognition on all nodes</h3>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">echo</span> <span class="s1">'192.168.171.132 master'</span> &gt;&gt; /etc/hosts
+<span class="nb">echo</span> <span class="s1">'192.168.171.133 slave1'</span> &gt;&gt; /etc/hosts
+<span class="nb">echo</span> <span class="s1">'192.168.171.134 slave2'</span> &gt;&gt; /etc/hosts
+</code></pre>
+</div>
+
+<p>check the recognition works:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>ping master
+ping slave1
+ping slave2
+</code></pre>
+</div>
+
+<h3 id="setup-ssh-no-password-login-on-all-nodes">3.6. setup ssh no password login on all nodes</h3>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>su - hadoop
+ssh-keygen -t rsa
+ssh-copy-id master
+ssh-copy-id slave1
+ssh-copy-id slave2
+</code></pre>
+</div>
+
+<p>now you can ssh login to all 3 nodes without passwd, please have a try to check it out.
+<br /> <br /></p>
+
+<h2 id="a-name44-hadoop-setupa"><a name="4">4. Hadoop Setup</a></h2>
+
+<p>P.S. the whole <strong><a href="#4">Step 4</a></strong> operations happens on a single node, let’s say, <em>master</em>. In addition, we’ll login as user <em>hadoop</em> to finish all operations.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>su - hadoop
+</code></pre>
+</div>
+
+<h3 id="download-and-untar-on-the-file-system">4.1. Download and untar on the file system.</h3>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>wget http://mirrors.sonic.net/apache/hadoop/common/hadoop-2.7.3/hadoop-2.7.3.tar.gz
+untar -zxvf hadoop-2.7.3.tar.gz
+rm hadoop-2.7.3.tar.gz
+chmod 775 hadoop-2.7.3
+</code></pre>
+</div>
+
+<h3 id="add-environment-variables-for-hadoop">4.2. Add environment variables for hadoop</h3>
+
+<p>append following content onto ~/.bashrc</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">export </span><span class="nv">HADOOP_HOME</span><span class="o">=</span>/home/hadoop/hadoop-2.7.3
+<span class="nb">export </span><span class="nv">HADOOP_INSTALL</span><span class="o">=</span><span class="nv">$HADOOP_HOME</span>
+<span class="nb">export </span><span class="nv">HADOOP_MAPRED_HOME</span><span class="o">=</span><span class="nv">$HADOOP_HOME</span>
+<span class="nb">export </span><span class="nv">HADOOP_COMMON_HOME</span><span class="o">=</span><span class="nv">$HADOOP_HOME</span>
+<span class="nb">export </span><span class="nv">HADOOP_HDFS_HOME</span><span class="o">=</span><span class="nv">$HADOOP_HOME</span>
+<span class="nb">export </span><span class="nv">YARN_HOME</span><span class="o">=</span><span class="nv">$HADOOP_HOME</span>
+<span class="nb">export </span><span class="nv">HADOOP_COMMON_LIB_NATIVE_DIR</span><span class="o">=</span><span class="nv">$HADOOP_HOME</span>/lib/native
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$HADOOP_HOME</span>/sbin:<span class="nv">$HADOOP_HOME</span>/bin
+</code></pre>
+</div>
+
+<p>then make these variables effect:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">source</span> ~/.bashrc
+</code></pre>
+</div>
+
+<h3 id="modify-configuration-files-for-hadoop">4.3. Modify configuration files for hadoop</h3>
+
+<ul>
+  <li>Add slave node hostnames into <code class="highlighter-rouge">$HADOOP_HOME/etc/hadoop/slaves</code> file</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">echo </span>slave1 &gt; <span class="nv">$HADOOP_HOME</span>/etc/hadoop/slaves
+<span class="nb">echo </span>slave2 &gt;&gt; <span class="nv">$HADOOP_HOME</span>/etc/hadoop/slaves
+</code></pre>
+</div>
+
+<ul>
+  <li>Add secondary node hostname into <code class="highlighter-rouge">$HADOOP_HOME/etc/hadoop/masters</code> file</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">echo </span>slave1 &gt; <span class="nv">$HADOOP_HOME</span>/etc/hadoop/masters
+</code></pre>
+</div>
+
+<ul>
+  <li>Modify <code class="highlighter-rouge">$HADOOP_HOME/etc/hadoop/core-site.xml</code> as following</li>
+</ul>
+
+<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;configuration&gt;</span>
+<span class="nt">&lt;property&gt;</span>
+    <span class="nt">&lt;name&gt;</span>fs.defaultFS<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;value&gt;</span>hdfs://master:9000/<span class="nt">&lt;/value&gt;</span>
+    <span class="nt">&lt;description&gt;</span>namenode settings<span class="nt">&lt;/description&gt;</span>
+<span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;property&gt;</span>
+    <span class="nt">&lt;name&gt;</span>hadoop.tmp.dir<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;value&gt;</span>/home/hadoop/hadoop-2.7.3/tmp/hadoop-${user.name}<span class="nt">&lt;/value&gt;</span>
+    <span class="nt">&lt;description&gt;</span> temp folder <span class="nt">&lt;/description&gt;</span>
+<span class="nt">&lt;/property&gt;</span>  
+<span class="nt">&lt;property&gt;</span>
+    <span class="nt">&lt;name&gt;</span>hadoop.proxyuser.hadoop.hosts<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;value&gt;</span>*<span class="nt">&lt;/value&gt;</span>
+<span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;property&gt;</span>
+    <span class="nt">&lt;name&gt;</span>hadoop.proxyuser.hadoop.groups<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;value&gt;</span>*<span class="nt">&lt;/value&gt;</span>
+<span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/configuration&gt;</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Modify <code class="highlighter-rouge">$HADOOP_HOME/etc/hadoop/hdfs-site.xml</code> as following</li>
+</ul>
+
+<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;configuration&gt;</span>  
+    <span class="nt">&lt;property&gt;</span>  
+        <span class="nt">&lt;name&gt;</span>dfs.namenode.http-address<span class="nt">&lt;/name&gt;</span>  
+        <span class="nt">&lt;value&gt;</span>master:50070<span class="nt">&lt;/value&gt;</span>  
+        <span class="nt">&lt;description&gt;</span> fetch NameNode images and edits <span class="nt">&lt;/description&gt;</span>  
+    <span class="nt">&lt;/property&gt;</span>
+    <span class="nt">&lt;property&gt;</span>  
+        <span class="nt">&lt;name&gt;</span>dfs.namenode.secondary.http-address<span class="nt">&lt;/name&gt;</span>  
+        <span class="nt">&lt;value&gt;</span>slave1:50090<span class="nt">&lt;/value&gt;</span>  
+        <span class="nt">&lt;description&gt;</span> fetch SecondNameNode fsimage <span class="nt">&lt;/description&gt;</span>  
+    <span class="nt">&lt;/property&gt;</span> 
+    <span class="nt">&lt;property&gt;</span>
+        <span class="nt">&lt;name&gt;</span>dfs.replication<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;value&gt;</span>2<span class="nt">&lt;/value&gt;</span>
+        <span class="nt">&lt;description&gt;</span> replica count <span class="nt">&lt;/description&gt;</span>
+    <span class="nt">&lt;/property&gt;</span>
+    <span class="nt">&lt;property&gt;</span>  
+        <span class="nt">&lt;name&gt;</span>dfs.namenode.name.dir<span class="nt">&lt;/name&gt;</span>  
+        <span class="nt">&lt;value&gt;</span>file:///home/hadoop/hadoop-2.7.3/hdfs/name<span class="nt">&lt;/value&gt;</span>  
+        <span class="nt">&lt;description&gt;</span> namenode <span class="nt">&lt;/description&gt;</span>  
+    <span class="nt">&lt;/property&gt;</span>  
+    <span class="nt">&lt;property&gt;</span>  
+        <span class="nt">&lt;name&gt;</span>dfs.datanode.data.dir<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;value&gt;</span>file:///home/hadoop/hadoop-2.7.3/hdfs/data<span class="nt">&lt;/value&gt;</span>  
+        <span class="nt">&lt;description&gt;</span> DataNode <span class="nt">&lt;/description&gt;</span>  
+    <span class="nt">&lt;/property&gt;</span>  
+    <span class="nt">&lt;property&gt;</span>  
+        <span class="nt">&lt;name&gt;</span>dfs.namenode.checkpoint.dir<span class="nt">&lt;/name&gt;</span>  
+        <span class="nt">&lt;value&gt;</span>file:///home/hadoop/hadoop-2.7.3/hdfs/namesecondary<span class="nt">&lt;/value&gt;</span>  
+        <span class="nt">&lt;description&gt;</span>  check point <span class="nt">&lt;/description&gt;</span>  
+    <span class="nt">&lt;/property&gt;</span> 
+    <span class="nt">&lt;property&gt;</span>
+        <span class="nt">&lt;name&gt;</span>dfs.webhdfs.enabled<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;value&gt;</span>true<span class="nt">&lt;/value&gt;</span>
+    <span class="nt">&lt;/property&gt;</span>
+    <span class="nt">&lt;property&gt;</span>
+        <span class="nt">&lt;name&gt;</span>dfs.stream-buffer-size<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;value&gt;</span>131072<span class="nt">&lt;/value&gt;</span>
+        <span class="nt">&lt;description&gt;</span> buffer <span class="nt">&lt;/description&gt;</span>
+    <span class="nt">&lt;/property&gt;</span> 
+    <span class="nt">&lt;property&gt;</span>  
+        <span class="nt">&lt;name&gt;</span>dfs.namenode.checkpoint.period<span class="nt">&lt;/name&gt;</span>  
+        <span class="nt">&lt;value&gt;</span>3600<span class="nt">&lt;/value&gt;</span>  
+        <span class="nt">&lt;description&gt;</span> duration <span class="nt">&lt;/description&gt;</span>  
+    <span class="nt">&lt;/property&gt;</span> 
+<span class="nt">&lt;/configuration&gt;</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Modify <code class="highlighter-rouge">$HADOOP_HOME/etc/hadoop/mapred-site.xml</code> as following</li>
+</ul>
+
+<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;configuration&gt;</span>  
+    <span class="nt">&lt;property&gt;</span>
+        <span class="nt">&lt;name&gt;</span>mapreduce.framework.name<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;value&gt;</span>yarn<span class="nt">&lt;/value&gt;</span>
+        <span class="nt">&lt;/property&gt;</span>
+    <span class="nt">&lt;property&gt;</span>
+        <span class="nt">&lt;name&gt;</span>mapreduce.jobtracker.address<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;value&gt;</span>hdfs://trucy:9001<span class="nt">&lt;/value&gt;</span>
+    <span class="nt">&lt;/property&gt;</span>
+    <span class="nt">&lt;property&gt;</span>
+        <span class="nt">&lt;name&gt;</span>mapreduce.jobhistory.address<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;value&gt;</span>master:10020<span class="nt">&lt;/value&gt;</span>
+        <span class="nt">&lt;description&gt;</span>MapReduce JobHistory Server host:port, default port is 10020.<span class="nt">&lt;/description&gt;</span>
+    <span class="nt">&lt;/property&gt;</span>
+    <span class="nt">&lt;property&gt;</span>
+        <span class="nt">&lt;name&gt;</span>mapreduce.jobhistory.webapp.address<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;value&gt;</span>master:19888<span class="nt">&lt;/value&gt;</span>
+        <span class="nt">&lt;description&gt;</span>MapReduce JobHistory Server Web UI host:port, default port is 19888.<span class="nt">&lt;/description&gt;</span>
+    <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/configuration&gt;</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Modify <code class="highlighter-rouge">$HADOOP_HOME/etc/hadoop/yarn-site.xml</code> as following</li>
+</ul>
+
+<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;configuration&gt;</span>
+    <span class="nt">&lt;property&gt;</span>
+        <span class="nt">&lt;name&gt;</span>yarn.resourcemanager.hostname<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;value&gt;</span>master<span class="nt">&lt;/value&gt;</span>
+    <span class="nt">&lt;/property&gt;</span>
+    <span class="nt">&lt;property&gt;</span>
+        <span class="nt">&lt;name&gt;</span>yarn.nodemanager.aux-services<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;value&gt;</span>mapreduce_shuffle<span class="nt">&lt;/value&gt;</span>
+    <span class="nt">&lt;/property&gt;</span>
+    <span class="nt">&lt;property&gt;</span>
+        <span class="nt">&lt;name&gt;</span>yarn.nodemanager.aux-services.mapreduce.shuffle.class<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;value&gt;</span>org.apache.hadoop.mapred.ShuffleHandler<span class="nt">&lt;/value&gt;</span>
+    <span class="nt">&lt;/property&gt;</span>
+    <span class="nt">&lt;property&gt;</span>
+        <span class="nt">&lt;name&gt;</span>yarn.resourcemanager.address<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;value&gt;</span>master:8032<span class="nt">&lt;/value&gt;</span>
+    <span class="nt">&lt;/property&gt;</span>
+    <span class="nt">&lt;property&gt;</span>
+        <span class="nt">&lt;name&gt;</span>yarn.resourcemanager.scheduler.address<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;value&gt;</span>master:8030<span class="nt">&lt;/value&gt;</span>
+    <span class="nt">&lt;/property&gt;</span>
+    <span class="nt">&lt;property&gt;</span>
+        <span class="nt">&lt;name&gt;</span>yarn.resourcemanager.resource-tracker.address<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;value&gt;</span>master:8031<span class="nt">&lt;/value&gt;</span>
+    <span class="nt">&lt;/property&gt;</span>
+    <span class="nt">&lt;property&gt;</span>
+        <span class="nt">&lt;name&gt;</span>yarn.resourcemanager.admin.address<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;value&gt;</span>master:8033<span class="nt">&lt;/value&gt;</span>
+    <span class="nt">&lt;/property&gt;</span>
+    <span class="nt">&lt;property&gt;</span>
+        <span class="nt">&lt;name&gt;</span>yarn.resourcemanager.webapp.address<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;value&gt;</span>master:8088<span class="nt">&lt;/value&gt;</span>
+    <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/configuration&gt;</span>
+</code></pre>
+</div>
+
+<h3 id="create-necessary-folders">4.4. Create necessary folders</h3>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>mkdir -p <span class="nv">$HADOOP_HOME</span>/tmp
+mkdir -p <span class="nv">$HADOOP_HOME</span>/hdfs/name
+mkdir -p <span class="nv">$HADOOP_HOME</span>/hdfs/data
+</code></pre>
+</div>
+
+<h3 id="copy-hadoop-folders-and-environment-settings-to-slaves">4.5. Copy hadoop folders and environment settings to slaves</h3>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>scp ~/.bashrc slave1:~/
+scp ~/.bashrc slave2:~/
+
+scp -r ~/hadoop-2.7.3 slave1:~/
+scp -r ~/hadoop-2.7.3 slave2:~/
+</code></pre>
+</div>
+
+<p><br /></p>
+
+<h2 id="a-name55-launch-hadoop-cluster-servicea"><a name="5">5. Launch hadoop cluster service</a></h2>
+
+<ul>
+  <li>Format namenode for the first time launch</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>hdfs namenode -format
+</code></pre>
+</div>
+
+<ul>
+  <li>Launch dfs distributed file system</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>start-dfs.sh
+</code></pre>
+</div>
+
+<ul>
+  <li>Launch yarn distributed computing system</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>start-yarn.sh
+</code></pre>
+</div>
+
+<ul>
+  <li>Shutdown Hadoop Cluster</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>stop-yarn.sh
+stop-dfs.sh
+</code></pre>
+</div>
+
+<p><br /></p>
+
+<h2 id="a-name66-verify-the-hadoop-cluster-is-up-and-healthya"><a name="6">6. Verify the hadoop cluster is up and healthy</a></h2>
+
+<h3 id="verify-by-jps-processus">6.1. Verify by jps processus</h3>
+
+<p>Check <em>jps</em> on each node, and view results. <br /></p>
+
+<ul>
+  <li>jps normal results on <em>master</em> node:</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># jps</span>
+32967 NameNode
+33225 Jps
+32687 ResourceManager 
+</code></pre>
+</div>
+
+<ul>
+  <li>On <em>slave1</em> node:</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># jps</span>
+28227 SecondaryNameNode
+28496 Jps
+28179 DataNode
+28374 NodeManager 
+</code></pre>
+</div>
+
+<ul>
+  <li>On <em>slave2</em> node:</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># jps</span>
+27680 DataNode
+27904 Jps
+27784 NodeManager
+</code></pre>
+</div>
+
+<h3 id="verify-on-web-interface">6.2. Verify on Web interface</h3>
+
+<p><code class="highlighter-rouge">192.168.171.132:50070</code> to view hdfs storage status. <br />
+<code class="highlighter-rouge">192.168.171.132:8088</code> to view yarn computing system resources and application status.<br /></p>
+
+<h3 id="a-name77-enda"><a name="7">7. End</a></h3>
+
+<p>This is all about basic version of hadoop 3 nodes cluster, for high availability version &amp; hadoop relative eco-systems, I’ll give it on other posts, thanks for contacting me if there is anything mistype or you have any suggestions or anything you don’t understand. Hope you all enjoy the hadoop journey! :)</p>
+
+</article>
+
+
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+      <a href="//www.linkedin.com/shareArticle?mini=true&url=http://unskilledcoder.github.io/hadoop/2016/12/10/hadoop-cluster-installation-basic-version.html"
+        onclick="window.open(this.href, 'linkedin-share', 'width=550,height=255');return false;">
+        <i class="fa fa-linkedin-square fa-lg"></i>
+      </a>
+    
+    
+    
+  
+</section>
+
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">Unskilled Coder</h3>
+
+    <div class="site-navigation">
+      
+      <p><strong>Site Map</strong></p>
+      <ul class="pages">
+        
+        
+          <li class="nav-link"><a href="/about/">About</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          <li class="nav-link"><a href="/posts/">Posts</a>
+        
+        
+        
+          <li class="nav-link"><a href="/typography/">Typography</a>
+        
+        
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:unskilledcoder@gmail.com">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">unskilledcoder@gmail.com</span>
+          </a>
+        </li>
+
+        
+          
+          <li>
+            <a href="https://github.com/unskilledcoder" title="Fork me on GitHub">
+              <i class="fa fa-github"></i>
+              <span class="username">Unskilled Coder</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="http://www.linkedin.com/in/wuhao1542" title="Connect with me on LinkedIn">
+              <i class="fa fa-linkedin"></i>
+              <span class="username">Hao WU</span>
+            </a>
+          </li>
+          
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+      <p class="text">Less is more.
+</p>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js"></script>
+<script>
+
+$(document).ready(function() {
+
+  // Syntax highlighting
+  hljs.initHighlightingOnLoad();
+
+  // Header
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+
+
+});
+
+</script>
+
+
+
+
+  </body>
+
+</html>

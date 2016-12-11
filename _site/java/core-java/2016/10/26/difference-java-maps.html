@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Difference of Java maps (HashMap, HashTable, ConcurrentHashMap)</title>
+  <meta name="description" content="Based on different senarios, we are often struggling choosing among different map implementations, like HashMap, HashTable &amp; ConcurrentHashMap. Unlike ot...">
+  
+  <meta name="author" content="Hao WU">
+  <meta name="copyright" content="&copy; Hao WU 2016">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/monokai_sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <!-- Facebook OGP cards -->
+  <meta property="og:description" content="Based on different senarios, we are often struggling choosing among different map implementations, like HashMap, HashTable &amp; ConcurrentHashMap. Unlike ot..." />
+  <meta property="og:url" content="http://unskilledcoder.github.io" />
+  <meta property="og:site_name" content="Unskilled Coder" />
+  <meta property="og:title" content="Difference of Java maps (HashMap, HashTable, ConcurrentHashMap)" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://unskilledcoder.github.io/assets/logo.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="612" />
+  <meta property="og:image:height" content="605" />
+  
+
+  
+  <!-- Twitter: card tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Difference of Java maps (HashMap, HashTable, ConcurrentHashMap)">
+  <meta name="twitter:description" content="Based on different senarios, we are often struggling choosing among different map implementations, like HashMap, HashTable &amp; ConcurrentHashMap. Unlike ot...">
+  <meta name="twitter:image" content="http://unskilledcoder.github.io/assets/logo.png">
+  <meta name="twitter:url" content="http://unskilledcoder.github.io">
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://unskilledcoder.github.io/java/core-java/2016/10/26/difference-java-maps.html">
+  <link rel="alternate" type="application/rss+xml" title="Unskilled Coder" href="http://unskilledcoder.github.io/feed.xml" />
+
+  <!-- Begin Jekyll SEO tag v2.0.0 -->
+<title>Difference of Java maps (HashMap, HashTable, ConcurrentHashMap) - Unskilled Coder</title>
+<meta property="og:title" content="Difference of Java maps (HashMap, HashTable, ConcurrentHashMap)" />
+<meta name="description" content="Based on different senarios, we are often struggling choosing among different map implementations, like HashMap, HashTable &amp; ConcurrentHashMap. Unlike other articles, I will not show up detail code here, but explain the principle and conceptions. And I highly recommend here you should at least look into the source code yourself for concret notion and deeper impression." />
+<meta property="og:description" content="Based on different senarios, we are often struggling choosing among different map implementations, like HashMap, HashTable &amp; ConcurrentHashMap. Unlike other articles, I will not show up detail code here, but explain the principle and conceptions. And I highly recommend here you should at least look into the source code yourself for concret notion and deeper impression." />
+<link rel="canonical" href="http://unskilledcoder.github.io/java/core-java/2016/10/26/difference-java-maps.html" />
+<meta property="og:url" content="http://unskilledcoder.github.io/java/core-java/2016/10/26/difference-java-maps.html" />
+<meta property="og:site_name" content="Unskilled Coder" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-10-26T17:00:00+08:00" />
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Difference of Java maps (HashMap, HashTable, ConcurrentHashMap)",
+    "datePublished": "2016-10-26T17:00:00+08:00",
+    "description": "Based on different senarios, we are often struggling choosing among different map implementations, like HashMap, HashTable &amp; ConcurrentHashMap. Unlike other articles, I will not show up detail code here, but explain the principle and conceptions. And I highly recommend here you should at least look into the source code yourself for concret notion and deeper impression.",
+    "logo": "http://unskilledcoder.github.io/assets/logo.png",
+    "url": "http://unskilledcoder.github.io/java/core-java/2016/10/26/difference-java-maps.html"
+  }
+</script>
+<!-- End Jekyll SEO tag -->
+
+  <meta name="google-site-verification" content="jYuPMeBs4raAulb1NWzxmyNoSvei1b5nhDig8lIMMYo" />
+</head>
+
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <a href="/" class="logo">
+      
+      <img src="/assets/logo.png" alt="Unskilled Coder">
+      
+    </a>
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <ul id="js-navigation-menu" class="navigation-menu show">
+        
+          
+          <li class="nav-link"><a href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+          <li class="nav-link"><a href="/posts/">Posts</a>
+          
+        
+          
+          <li class="nav-link"><a href="/typography/">Typography</a>
+          
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container " >
+  <div class="scrim ">
+    <header class="post-header">
+      <h1 class="title">Difference of Java maps (HashMap, HashTable, ConcurrentHashMap)</h1>
+      <p class="info">by <strong>Hao WU</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+ <span class="page-divider">
+  <span class="one"></span>
+  <span class="two"></span>
+</span>
+ 
+
+<section class="post-meta">
+  <div class="post-date">October 26, 2016</div>
+  <div class="post-categories">
+  in 
+    
+    <a href="/category/java">Java</a>, 
+    
+  
+    
+    <a href="/category/core-java">Core-java</a>
+    
+  
+  </div>
+</section>  
+
+<article class="post-content">
+  <p>Based on different senarios, we are often struggling choosing among different map implementations, like HashMap, HashTable &amp; ConcurrentHashMap. Unlike other articles, I will not show up detail code here, but explain the principle and conceptions. And I highly recommend here you should at least look into the source code yourself for concret notion and deeper impression.</p>
+
+<h4 id="hashtable">HashTable</h4>
+
+<p>Let me introduce <strong>HashTable</strong> first, which is the earliest hashmap implementation in Java library above all 3. To make this table fit all senarios, the syncronized keyword is added onto most of its methods to provide thread-safe feature. And it does not accept the null key and value.</p>
+
+<p>So in javadoc there is a comment for this hashmap:</p>
+
+<p>If a thread-safe implementation is not needed, it is recommended to use HashMap in place of Hashtable. If a thread-safe highly-concurrent implementation is desired, then it is recommended to use java.util.concurrent.ConcurrentHashMap in place of Hashtable.</p>
+
+<p>In another word, we should not use this class any longer.</p>
+
+<h4 id="hashmap">HashMap</h4>
+<p>The HashMap class is nothing but the new unsynchronized version of Hashtable (while code between them is not relevant), and it permits nulls.
+<br />
+In addition, HashMap has been added a new feature, which is, the linkedlist below each hash barrel will be transformed into red-black tree once the size of the list gets too large.</p>
+
+<h4 id="concurrenthashmap">ConcurrentHashMap</h4>
+<p>So it’s straight forward that, this class is the thread-safe version of HashTable, but in a more reasonable way of implementation. It does not permit nulls neither just like HashTable.</p>
+
+<p>Its thread-safe mechanism is simply as below:</p>
+<ol>
+  <li>Volatile level read</li>
+  <li>Lock level write</li>
+  <li>16 locks for 16 ranges of hash barrel for additional performance tuning</li>
+</ol>
+
+<p>** <strong>volatile</strong> keyword promises variable visibility, in assemble code level volatile makes sure that once a thread modifies a volatile variable, forces the change to be written back to the main memory (other threads may all find out the modification happened).</p>
+
+</article>
+
+
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+      <a href="//www.linkedin.com/shareArticle?mini=true&url=http://unskilledcoder.github.io/java/core-java/2016/10/26/difference-java-maps.html"
+        onclick="window.open(this.href, 'linkedin-share', 'width=550,height=255');return false;">
+        <i class="fa fa-linkedin-square fa-lg"></i>
+      </a>
+    
+    
+    
+  
+</section>
+
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">Unskilled Coder</h3>
+
+    <div class="site-navigation">
+      
+      <p><strong>Site Map</strong></p>
+      <ul class="pages">
+        
+        
+          <li class="nav-link"><a href="/about/">About</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          <li class="nav-link"><a href="/posts/">Posts</a>
+        
+        
+        
+          <li class="nav-link"><a href="/typography/">Typography</a>
+        
+        
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:unskilledcoder@gmail.com">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">unskilledcoder@gmail.com</span>
+          </a>
+        </li>
+
+        
+          
+          <li>
+            <a href="https://github.com/unskilledcoder" title="Fork me on GitHub">
+              <i class="fa fa-github"></i>
+              <span class="username">Unskilled Coder</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="http://www.linkedin.com/in/wuhao1542" title="Connect with me on LinkedIn">
+              <i class="fa fa-linkedin"></i>
+              <span class="username">Hao WU</span>
+            </a>
+          </li>
+          
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+      <p class="text">Less is more.
+</p>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js"></script>
+<script>
+
+$(document).ready(function() {
+
+  // Syntax highlighting
+  hljs.initHighlightingOnLoad();
+
+  // Header
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+
+
+});
+
+</script>
+
+
+
+
+  </body>
+
+</html>
