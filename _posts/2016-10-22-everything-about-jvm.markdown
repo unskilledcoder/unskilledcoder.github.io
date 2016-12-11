@@ -2,7 +2,7 @@
 layout: post
 title:  "Everything about JVM"
 date:   2016-10-22 08:43:59
-author: Unskilled Coder
+author: Hao WU
 categories: java jvm
 ---
 

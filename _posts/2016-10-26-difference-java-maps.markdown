@@ -2,7 +2,7 @@
 layout: post
 title:  "Difference of Java maps (HashMap, HashTable, ConcurrentHashMap)"
 date:   2016-10-26 09:00:00
-author: Unskilled Coder
+author: Hao WU
 categories: java core-java
 ---
 
