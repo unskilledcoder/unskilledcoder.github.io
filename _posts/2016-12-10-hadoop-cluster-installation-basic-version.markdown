@@ -43,26 +43,29 @@ This posts will give all related detail in how to setup a Hadoop cluster on Cent
 
 ### 3.1. install necessary packages for OS
 
-We pick up CentOS minimal IOS as our installation prototype, once the system installation completed, we need to install 2 things: <br />
+We pick up CentOS minimal ISO as our installation prototype, once the system installed, we need 2 more basic packages: <br />
 
 ```bash
 sudo install -y net-tools
 sudo install -y openssh-server
 ```
+
 *The first line is to install ifconfig, while the second one is to be able to be ssh login by remote peer.*<br />
 
 ### 3.2. setup hostname for all nodes
 
-This step is optional, but important for better self-identify while you use same username login to different nodes. 
+This step is optional, but important for better self-identify while you use same username to walk through different nodes. 
 
 ```bash
 sudo hostnamectl set-hostname master
 ```
 
 *ex: at <b>master</b> node*
+
 re-login to check the effect
 
 ### 3.3. setup jdk for all nodes
+
 *install jdk from oracle official website*
 
 ```bash
