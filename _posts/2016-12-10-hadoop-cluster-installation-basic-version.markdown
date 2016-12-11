@@ -142,7 +142,7 @@ now you can ssh login to all 3 nodes without passwd, please have a try to check 
 
 ## <a name="4">4. Hadoop Setup</a>
 
-P.S. the whole ***step 2*** operations happens on a single node, let's say, *master*. In addition, we'll login as user *hadoop* to finish all operations.
+P.S. the whole **[Step 4](#4)** operations happens on a single node, let's say, *master*. In addition, we'll login as user *hadoop* to finish all operations.
 
 ```bash
 su - hadoop
