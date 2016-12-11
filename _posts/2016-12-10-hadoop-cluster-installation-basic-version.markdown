@@ -46,8 +46,8 @@ This posts will give all related detail in how to setup a Hadoop cluster on Cent
 We pick up CentOS minimal ISO as our installation prototype, once the system installed, we need 2 more basic packages: <br />
 
 ```bash
-sudo install -y net-tools
-sudo install -y openssh-server
+sudo yum install -y net-tools
+sudo yum install -y openssh-server
 ```
 
 *The first line is to install ifconfig, while the second one is to be able to be ssh login by remote peer.*<br />
