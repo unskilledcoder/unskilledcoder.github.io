@@ -1,6 +1,7 @@
 .DS_Store
 
-
+# Compiled site files
+_site/
 
 # Sass garbage
 .sass-cache
