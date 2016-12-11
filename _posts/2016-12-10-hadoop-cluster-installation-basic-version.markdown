@@ -8,13 +8,18 @@ categories: hadoop
 
 ## Summary
 
->
 ### [1. Introduction](#1)
+
 ### [2. Architecture](#2)
+
 ### [3. CentOS setup](#3)
+
 ### [4. Hadoop Setup](#4)
+
 ### [5. Launch and Shutdown Hadoop Cluster Service](#5)
+
 ### [6. Verify the hadoop cluster is up and healthy](#6)
+
 ### [7. End](#7)
 
 <br />
