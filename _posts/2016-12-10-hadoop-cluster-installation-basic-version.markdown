@@ -3,7 +3,7 @@ layout: post
 title:  "Hadoop Cluster 2.7.3 Installation on CentOS 7 in basic version"
 date:   2016-12-10 09:00:00
 author: Hao WU
-categories: Hadoop
+categories: hadoop
 ---
 
 ## Summary

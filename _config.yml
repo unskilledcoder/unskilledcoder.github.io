@@ -58,7 +58,7 @@ descriptions:
   - cat: core-java
     desc: "Posts that is relavant to core java."
 
-  - cat: Hadoop
+  - cat: hadoop
     desc: "hadoop related posts."
 
 # Social icons and sharing options
