@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Zookeeper Cluster Setup for Hadoop"
+title:  "Zookeeper 3.4.9 Cluster Setup for Hadoop"
 date:   2016-12-10 09:00:00
 author: Hao WU
 categories: hadoop zookeeper
