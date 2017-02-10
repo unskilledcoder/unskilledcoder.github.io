@@ -149,7 +149,8 @@ now you can ssh login to all 3 nodes without passwd, please have a try to check 
 sudo systemctl stop firewalld.service
 sudo systemctl disable firewalld.service
 ```
-<br /> <br />
+
+<br />
 
 ## <a name="4">4. Hadoop Setup</a>
 
@@ -163,7 +164,7 @@ su - hadoop
 
 ```bash
 wget http://mirrors.sonic.net/apache/hadoop/common/hadoop-2.6.5/hadoop-2.6.5.tar.gz
-untar -zxvf hadoop-2.6.5.tar.gz
+tar -xvf hadoop-2.6.5.tar.gz
 rm hadoop-2.6.5.tar.gz
 chmod 775 hadoop-2.6.5
 ```
