@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Hadoop Cluster 2.7.3 Installation on CentOS 7 in basic version"
+title:  "Hadoop Cluster 2.6.5 Installation on CentOS 7 in basic version"
 date:   2016-12-10 09:00:00
 author: Hao WU
 categories: hadoop
@@ -27,6 +27,9 @@ categories: hadoop
 ## <a name="1">1. Introduction</a>
 
 This posts will give all related detail in how to setup a Hadoop cluster on CentOS linux system. Before you read this article, I assume you already have all basic conceptions about Hadoop and Linux operating system.
+<br/>
+
+P.S. Since the community of Hadoop version 2.7.x does still not exceed mature, I downgrade the version back to 2.6.5
 <br /><br />
 
 ## <a name="2">2. Architecture</a>
@@ -43,11 +46,12 @@ This posts will give all related detail in how to setup a Hadoop cluster on Cent
 
 ### 3.1. install necessary packages for OS
 
-We pick up CentOS minimal ISO as our installation prototype, once the system installed, we need 2 more basic packages: <br />
+We pick up CentOS minimal ISO as our installation prototype, once the system installed, we need several more basic packages: <br />
 
 ```bash
 sudo yum install -y net-tools
 sudo yum install -y openssh-server
+sudo yum install -y wget
 ```
 
 *The first line is to install ifconfig, while the second one is to be able to be ssh login by remote peer.*<br />
@@ -69,9 +73,9 @@ re-login to check the effect
 *install jdk from oracle official website*
 
 ```bash
-sudo wget --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u112-b14/jdk-8u112-linux-x64.rpm
-sudo yum localinstall -y jdk-8u112-linux-x64.rpm
-sudo rm jdk-8u112-linux-x64.rpm
+sudo wget --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u121-b13/e9e7ea248e2c4826b92b3f075a80e441/jdk-8u121-linux-x64.rpm
+sudo yum localinstall -y jdk-8u121-linux-x64.rpm
+sudo rm jdk-8u121-linux-x64.rpm
 ```
 
 *add java.sh under /etc/profile.d/* 
@@ -79,8 +83,8 @@ sudo rm jdk-8u112-linux-x64.rpm
 java.sh content:
 
 ```bash
-export JAVA_HOME=/usr/java/jdk1.8.0_112
-export JRE_HOME=/usr/java/jdk1.8.0_112/jre
+export JAVA_HOME=/usr/java/jdk1.8.0_121
+export JRE_HOME=/usr/java/jdk1.8.0_121/jre
 export CLASSPATH=$JAVA_HOME/lib:.
 export PATH=$PATH:$JAVA_HOME/bin
 ```
@@ -92,13 +96,13 @@ re-login, and you'll find all environment variables, and java is well installed.
 ```bash
 java -version
 ls $JAVA_HOME
-ls $PATH
+echo $PATH
 ```
 
 if the java version goes wrong, you can 
 
 ```bash
-sudo alternatives --config java
+sudo update-alternatives --config java
 ```
 
 then choose a correct version.
@@ -108,7 +112,7 @@ then choose a correct version.
 ```bash
 sudo groupadd hadoop
 sudo useradd -d /home/hadoop -g hadoop hadoop
-passwd hadoop
+sudo passwd hadoop
 ```
 
 ### 3.5. modify hosts file for network inter-recognition on all nodes
@@ -138,6 +142,13 @@ ssh-copy-id slave2
 ```
 
 now you can ssh login to all 3 nodes without passwd, please have a try to check it out.
+
+### 3.7. stop & disable firewall
+
+```bash
+sudo systemctl stop firewalld.service
+sudo systemctl disable firewalld.service
+```
 <br /> <br />
 
 ## <a name="4">4. Hadoop Setup</a>
@@ -151,10 +162,10 @@ su - hadoop
 ### 4.1. Download and untar on the file system.
 
 ```bash
-wget http://mirrors.sonic.net/apache/hadoop/common/hadoop-2.7.3/hadoop-2.7.3.tar.gz
-untar -zxvf hadoop-2.7.3.tar.gz
-rm hadoop-2.7.3.tar.gz
-chmod 775 hadoop-2.7.3
+wget http://mirrors.sonic.net/apache/hadoop/common/hadoop-2.6.5/hadoop-2.6.5.tar.gz
+untar -zxvf hadoop-2.6.5.tar.gz
+rm hadoop-2.6.5.tar.gz
+chmod 775 hadoop-2.6.5
 ```
 
 ### 4.2. Add environment variables for hadoop
@@ -162,7 +173,7 @@ chmod 775 hadoop-2.7.3
 append following content onto ~/.bashrc
 
 ```bash
-export HADOOP_HOME=/home/hadoop/hadoop-2.7.3
+export HADOOP_HOME=/home/hadoop/hadoop-2.6.5
 export HADOOP_INSTALL=$HADOOP_HOME
 export HADOOP_MAPRED_HOME=$HADOOP_HOME
 export HADOOP_COMMON_HOME=$HADOOP_HOME
@@ -204,7 +215,7 @@ echo slave1 > $HADOOP_HOME/etc/hadoop/masters
 </property>
 <property>
     <name>hadoop.tmp.dir</name>
-    <value>/home/hadoop/hadoop-2.7.3/tmp/hadoop-${user.name}</value>
+    <value>/home/hadoop/hadoop-2.6.5/tmp/hadoop-${user.name}</value>
     <description> temp folder </description>
 </property>  
 <property>
@@ -239,17 +250,17 @@ echo slave1 > $HADOOP_HOME/etc/hadoop/masters
     </property>
     <property>  
         <name>dfs.namenode.name.dir</name>  
-        <value>file:///home/hadoop/hadoop-2.7.3/hdfs/name</value>  
+        <value>file:///home/hadoop/hadoop-2.6.5/hdfs/name</value>  
         <description> namenode </description>  
     </property>  
     <property>  
         <name>dfs.datanode.data.dir</name>
-        <value>file:///home/hadoop/hadoop-2.7.3/hdfs/data</value>  
+        <value>file:///home/hadoop/hadoop-2.6.5/hdfs/data</value>  
         <description> DataNode </description>  
     </property>  
     <property>  
         <name>dfs.namenode.checkpoint.dir</name>  
-        <value>file:///home/hadoop/hadoop-2.7.3/hdfs/namesecondary</value>  
+        <value>file:///home/hadoop/hadoop-2.6.5/hdfs/namesecondary</value>  
         <description>  check point </description>  
     </property> 
     <property>
@@ -347,8 +358,8 @@ mkdir -p $HADOOP_HOME/hdfs/data
 scp ~/.bashrc slave1:~/
 scp ~/.bashrc slave2:~/
 
-scp -r ~/hadoop-2.7.3 slave1:~/
-scp -r ~/hadoop-2.7.3 slave2:~/
+scp -r ~/hadoop-2.6.5 slave1:~/
+scp -r ~/hadoop-2.6.5 slave2:~/
 ```
 
 <br />
