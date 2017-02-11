@@ -24,7 +24,7 @@ categories: hadoop hbase
 
 In this post, I'm going to go through the HBase Cluster setup process (version 1.2.4) onto the environment we just built in these posts:
 
-- [Hadoop Cluster 2.7.3 Installation on CentOS 7 in basic version](/hadoop/2016/12/10/hadoop-cluster-installation-basic-version.html)
+- [Hadoop Cluster 2.6.5 Installation on CentOS 7 in basic version](/hadoop/2016/12/10/hadoop-cluster-installation-basic-version.html)
 - [Zookeeper 3.4.9 Cluster Setup for Hadoop](/hadoop/zookeeper/2016/12/10/zookeeper-cluster-setup-for-hadoop.html)
 
 <br />

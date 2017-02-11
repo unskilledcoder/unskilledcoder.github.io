@@ -22,7 +22,7 @@ categories: hadoop zookeeper
 
 ## <a name="1">1. Introduction</a>
 
-This post is to basically guide you to setup a Zookeeper cluster based on the Hadoop cluster I previously built, please refer to my another post -- [Hadoop Cluster 2.7.3 Installation on CentOS 7 in basic version](/hadoop/2016/12/10/hadoop-cluster-installation-basic-version.html).
+This post is to basically guide you to setup a Zookeeper cluster based on the Hadoop cluster I previously built, please refer to my another post -- [Hadoop Cluster 2.6.5 Installation on CentOS 7 in basic version](/hadoop/2016/12/10/hadoop-cluster-installation-basic-version.html).
 <br />
 
 ## <a name="2">2. Architecture</a>
